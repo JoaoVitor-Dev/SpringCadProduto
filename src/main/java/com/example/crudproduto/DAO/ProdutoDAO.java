@@ -25,9 +25,9 @@ public class ProdutoDAO {
             PreparedStatement ps = con.prepareStatement(sql);
             //ResultSet, representa o resultado do comando SQL
             ResultSet rs = ps.executeQuery();
-            //cria uma lista de pessoas para retornar
+            //cria uma lista de produtos para retornar
             List<Produto> produto = new ArrayList();
-            //laço para buscar todas as pessoas do banco
+            //laço para buscar todas os produtos do banco
             while (rs.next()) {
                 Produto p = new Produto();
                 p.setId(rs.getInt("id"));
@@ -35,7 +35,7 @@ public class ProdutoDAO {
                 p.setPreco(rs.getDouble("valor"));
                 produto.add(p);
             }
-            //retorna a lista de pessoas
+            //retorna a lista de produtos
             return produto;
         } catch (SQLException ex) {
             Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
