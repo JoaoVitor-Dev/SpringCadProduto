@@ -5,6 +5,7 @@ import com.example.crudproduto.Model.Produto;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -35,6 +36,34 @@ public class ProdutoController {
     @PostMapping("/save")
     public ModelAndView saveProduto(Produto produto){
         dao.saveProduto(produto);
+        return new ModelAndView("redirect:/produto/list");
+    }
+
+    /**
+     * @param id
+     * @return
+     * @PathVariable é utilizado quando o valor da variável é passada diretamente na URL
+     */
+    @GetMapping("/removeProduto/{id}")
+    public ModelAndView remove(@PathVariable("id") Long id){
+        dao.removeProduto(id);
+        return new ModelAndView("redirect:/produto/list");
+    }
+
+    /**
+     * @param id
+     * @return
+     * @PathVariable é utilizado quando o valor da variável é passada diretamente na URL
+     */
+    @GetMapping("/editProduto/{id}")
+    public ModelAndView editProduto(@PathVariable("id") Long id, ModelMap model) {
+        model.addAttribute("produto", dao.buscarProduto(id));
+        return new ModelAndView("produto/form", model);
+    }
+
+    @PostMapping("/update")
+    public ModelAndView updateProduto(Produto produto) {
+        dao.updateProduto(produto);
         return new ModelAndView("redirect:/produto/list");
     }
 
