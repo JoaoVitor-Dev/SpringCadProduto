@@ -30,7 +30,7 @@ public class ProdutoDAO {
             //laço para buscar todas os produtos do banco
             while (rs.next()) {
                 Produto p = new Produto();
-                p.setId(rs.getInt("id"));
+                p.setId(rs.getLong("id"));
                 p.setDescricao(rs.getString("descricao"));
                 p.setPreco(rs.getDouble("valor"));
                 produto.add(p);
@@ -106,9 +106,9 @@ public class ProdutoDAO {
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 Produto p = new Produto();
-                p.setId(rs.getInt("id"));
+                p.setId(rs.getLong("id"));
                 p.setDescricao(rs.getString("descricao"));
-                p.setPreco(rs.getDouble("preco"));
+                p.setPreco(rs.getDouble("valor"));
                 return p;
             }
         } catch (SQLException ex) {

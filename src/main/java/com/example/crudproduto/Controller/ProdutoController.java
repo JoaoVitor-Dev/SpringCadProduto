@@ -58,7 +58,7 @@ public class ProdutoController {
     @GetMapping("/editProduto/{id}")
     public ModelAndView editProduto(@PathVariable("id") Long id, ModelMap model) {
         model.addAttribute("produto", dao.buscarProduto(id));
-        return new ModelAndView("produto/form", model);
+        return new ModelAndView("/produto/form", model);
     }
 
     @PostMapping("/update")
